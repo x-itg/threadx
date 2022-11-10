@@ -1,0 +1,90 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Project",
+            "type": "shell",
+            "linux": {
+                "command": "cd courses/threadx/${input:projectsList} && cmake -Bbuild && cmake --build build -j4",
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                },
+                "problemMatcher": [
+                    "$gcc"
+                ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run Project",
+            "type": "shell",
+            "linux": {
+                "command": "./courses/threadx/${input:projectsList}/build/${input:projectsList}",
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                },
+                "problemMatcher": [
+                    "$gcc"
+                ]
+            }
+        },
+        {
+            "label": "Clean Project",
+            "type": "shell",
+            "linux": {
+                "command": "rm -rf ./courses/threadx/${input:projectsList}/build/",
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                },
+                "problemMatcher": [
+                    "$gcc"
+                ]
+            }
+        },
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "projectsList", 
+            "description": "Select the project you want to build",
+            "options": [
+                {
+                    "label": "01",
+                    "value": "ProjectHelloWorld"
+                },
+                {
+                    "label": "02",
+                    "value": "ProjectAnalyze"
+                },
+                {
+                    "label": "03",
+                    "value": "ProjectBreakSuspension"
+                },
+                {
+                    "label": "04",
+                    "value": "ProjectProducerConsumer"
+                },
+                {
+                    "label": "05",
+                    "value": "ProjectEventFlags"
+                },
+                {
+                    "label": "06",
+                    "value": "ProjectMessageQueues"
+                },
+                {
+                    "label": "07",
+                    "value": "ProjectEventChaining"
+                },
+                {
+                    "label": "08",
+                    "value": "ProjectPriorityInversion"
+                }
+            ],
+            "default": "ProjectHelloWorld"
+        }
+    ]
+}
